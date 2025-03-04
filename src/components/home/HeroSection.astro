@@ -1,0 +1,300 @@
+---
+import "../../global.js";
+import CloudIcon from "../../icons/CloudArrowUp.astro";
+import GearIcon from "../../icons/Gear.astro";
+import SearchIcon from "../../icons/Search.astro";
+import Puzzle from "../../components/puzzle.astro";
+
+const puzzleScale = 1.75;
+---
+
+<section>
+    <Puzzle class="puzzle" scale={puzzleScale} aria-hidden="true" />
+    <img src="/puzzle-piece.png" alt="" />
+    <h1>GNOME Extensions</h1>
+    <p class="subtitle">
+        Cutsomize your GNOME Desktop and make it work for you. Thanks to a
+        community of Open Source developers.
+    </p>
+    <small class="faq-link">
+        <a href="/develop#what-are-gnome-shell-extensions">
+            What are GNOME Extensions?
+        </a>
+    </small>
+    <div class="searchbar">
+        <input autofocus id="searchfield" type="text" placeholder="" />
+        <div class="content">
+            <div class="left-container">
+                <SearchIcon aria-hidden="true" size="20" />
+                <label for="searchfield" class="placeholder">
+                    Search for extensions...
+                </label>
+            </div>
+            <div class="shortcut">Ctrl + K</div>
+        </div>
+    </div>
+    <div class="cta-buttons">
+        <button
+            type="button"
+            class="publish-button"
+            onclick="alert('This is not implemented since this is just an alternative frontend concept site. Dont use it for productive use cases!')"
+        >
+            <CloudIcon aria-hidden="true" /><span>Publish Extension</span>
+        </button>
+        <button
+            type="button"
+            class="manage-button"
+            onclick="alert('This is not implemented since this is just an alternative frontend concept site. Dont use it for productive use cases!')"
+        >
+            <GearIcon aria-hidden="true" /><span>Manage Extensions</span>
+        </button>
+    </div>
+</section>
+
+<style define:vars={{ puzzleScale }}>
+    section {
+        max-inline-size: var(--max-inline-size);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin: 0 auto;
+        padding-block: 3.5rem;
+        padding-inline: 1rem;
+        position: relative;
+        overflow: hidden;
+    }
+
+    h1,
+    .faq-link > a,
+    .subtitle {
+        z-index: 1;
+        text-shadow:
+            5px 0 5px white,
+            -5px 0 5px white,
+            0 5px 5px white,
+            0 -5px 5px white,
+            0 0 1rem white,
+            0 0 1rem white,
+            0 0 1rem white,
+            0 0 2rem white,
+            0 0 2rem white;
+
+        &::selection {
+            text-shadow: none;
+        }
+    }
+
+    img {
+        position: absolute;
+        top: 270px;
+        left: calc(50% - 345px);
+    }
+
+    .puzzle {
+        display: block;
+        pointer-events: none;
+        position: absolute;
+        top: -180px;
+        /* 1.200 is the default width of the puzzle */
+        right: calc(50% - 1200 * var(--puzzleScale));
+        mask: radial-gradient(ellipse at 50% 50%, black 25%, transparent 50%);
+
+        * {
+            stroke: #aaa;
+        }
+    }
+
+    h1 {
+        font-size: 2.25rem;
+        font-weight: 600;
+        margin-block: 0;
+    }
+
+    .subtitle {
+        display: none;
+    }
+
+    .faq-link {
+        font-size: smaller;
+        margin-block-start: 1.25rem;
+
+        a {
+            color: var(--text-color-dim);
+            text-decoration: 1px dotted underline var(--text-color-dim);
+
+            &:hover {
+                color: var(--primary-color-text);
+                text-decoration: none;
+            }
+        }
+    }
+
+    .searchbar {
+        inline-size: 100%;
+        max-inline-size: 38rem;
+        border: 1px solid var(--text-color-dim);
+        border-radius: 0.5rem;
+        margin-block: 3rem;
+        position: relative;
+        background-color: white;
+        box-shadow:
+            0 1px 0.25rem 1px rgba(0, 0, 0, 0.2),
+            0 5px 0.5rem rgba(0, 0, 0, 0.1);
+
+        .content {
+            position: absolute;
+            color: var(--text-color-dim);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            top: 0;
+            left: 1rem;
+            right: 1rem;
+            block-size: 100%;
+            pointer-events: none;
+            user-select: none;
+            -webkit-user-select: none;
+        }
+
+        .content > .left-container {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+
+            svg {
+                fill: var(--text-color-dim);
+            }
+        }
+
+        input {
+            background-color: transparent;
+            padding-inline-start: 3rem;
+            padding-inline-end: 1rem;
+            padding-block: 1rem;
+            inline-size: 100%;
+
+            &:focus {
+                outline: none;
+            }
+        }
+
+        input:focus + .content > .shortcut,
+        input:not(:placeholder-shown) + .content .placeholder {
+            display: none;
+        }
+    }
+
+    .cta-buttons {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        z-index: 1;
+
+        .publish-button,
+        .manage-button {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 0.75rem;
+            color: var(--text-color-dark);
+            inline-size: 15rem;
+            padding-block: 0.65rem;
+            border-radius: calc(infinity * 1px);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            text-align: center;
+            box-shadow: 0 0 1rem 3px white;
+        }
+
+        .publish-button {
+            background-color: var(--primary-color);
+
+            &:focus-visible {
+                box-shadow: 3px 4px 0 1px var(--primary-color-light);
+                outline: none;
+            }
+
+            &:hover {
+                > svg {
+                    transform: translateY(-0.25rem);
+                }
+
+                > span {
+                    transform: translateX(0.4rem);
+                }
+            }
+        }
+
+        .manage-button {
+            background-color: var(--primary-color-light);
+            outline-color: var(--primary-color-light);
+
+            &:focus-visible {
+                box-shadow: 3px 4px 0 1px var(--primary-color);
+                outline: none;
+            }
+
+            &:hover {
+                > svg {
+                    transform: rotateZ(90deg);
+                }
+
+                > span {
+                    transform: translateX(0.4rem);
+                }
+            }
+        }
+    }
+
+    @media (prefers-reduced-motion: no-preference) {
+        .cta-buttons .publish-button > * {
+            transition: transform 0.2s ease-out;
+        }
+
+        .cta-buttons .manage-button > * {
+            transition: transform 0.3s ease-out;
+        }
+    }
+
+    @media (min-width: 40rem) {
+        h1 {
+            font-size: 3rem;
+        }
+
+        .subtitle {
+            display: block;
+            color: var(--text-color-dim);
+            font-size: 1.25rem;
+            text-align: center;
+            margin-block-start: 2rem;
+            max-inline-size: 50ch;
+        }
+
+        .searchbar {
+            margin-block: 4rem;
+        }
+
+        .cta-buttons {
+            flex-direction: row;
+            gap: 2rem;
+        }
+    }
+</style>
+
+<script>
+    document.addEventListener("keydown", (e) => {
+        if (e.ctrlKey && e.key === "k") {
+            document.getElementById("searchfield")!.focus();
+            e.preventDefault();
+        }
+    });
+
+    const input = document.querySelector("#searchfield") as HTMLInputElement;
+
+    input.addEventListener("keydown", (e) => {
+        if (e.key === "Enter") {
+            window.location.href = `/search?q=${input.value}`;
+        }
+    });
+</script>

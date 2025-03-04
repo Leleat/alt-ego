@@ -1,0 +1,87 @@
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    border: none;
+    font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+    line-height: 1.5;
+    margin: 0;
+    padding: 0;
+
+    &::selection {
+        color: white;
+        background: #33d17a;
+    }
+}
+
+:root {
+    --hpadding: 2rem;
+    --vpadding: 2rem;
+    --max-inline-size: 80rem;
+    --navbar-height: 4rem;
+    --footer-height: 4rem;
+    --primary-color: #33d17a;
+    --primary-color-light: #bef4d5;
+    --primary-color-text: #00883d;
+    --background-color: #fff;
+    --text-color: #333;
+    --text-color-light: #fff;
+    --text-color-dim: #767676;
+
+    color: var(--text-color);
+    background-color: var(--primary-color);
+
+    > * {
+        /* Make overscroll background the primary color */
+        background-color: var(--background-color);
+    }
+
+    & :focus-visible {
+        outline: 3px solid var(--primary-color);
+        outline-offset: 2px;
+    }
+}
+
+a {
+    color: var(--primary-color-text);
+    text-decoration-style: dotted;
+
+    &:hover {
+        text-decoration-line: none;
+    }
+}
+
+h1 {
+    font-size: 2rem;
+    font-weight: 600;
+    margin-block-end: 1rem;
+}
+
+h2 {
+    font-size: 1.75rem;
+    font-weight: 600;
+    margin-block-end: 1rem;
+}
+
+h3 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-block-end: 1rem;
+}
+
+h4,
+h5,
+h6 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-block-end: 1rem;
+}
+
+ul > li {
+    list-style-type: "‣  ";
+    margin-inline-start: 2rem;
+}
+
+ol > li {
+    margin-inline-start: 2rem;
+}

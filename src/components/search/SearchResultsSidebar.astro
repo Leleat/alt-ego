@@ -1,0 +1,67 @@
+---
+import "../../global.js";
+---
+
+<aside>
+    <h1>Search Results</h1>
+    <div>
+        <label for="compatible-with">Compatible with</label>
+        <select id="compatible-with">
+            <option selected>Any GNOME</option>
+            <option>GNOME 47</option>
+        </select>
+    </div>
+    <div>
+        <label for="sort-by">Sort By</label>
+        <select id="sort-by">
+            <option>Popularity</option>
+            <option>Name</option>
+        </select>
+    </div>
+</aside>
+
+<style>
+    aside {
+        padding-inline-end: var(--hpadding);
+    }
+
+    h1 {
+        font-size: 1.25rem;
+        font-weight: 600;
+        margin-block-end: 1rem;
+    }
+
+    div {
+        display: flex;
+        align-items: center;
+        margin-block: 0.5rem;
+    }
+
+    label {
+        color: var(--text-color-dim);
+        white-space: nowrap;
+        font-size: smaller;
+    }
+
+    select {
+        color: var(--text-color);
+        background-color: transparent;
+        padding: 0.25rem 0.5rem;
+        margin-inline: 0.25rem;
+        text-align: center;
+
+        &:hover {
+            background-color: oklch(
+                from var(--showcase-background-color) calc(l + 0.05) c h
+            );
+        }
+    }
+
+    @media (min-width: 60rem) {
+        aside {
+            border-inline-end: 1px solid #ddd;
+            position: sticky;
+            top: 2rem;
+        }
+    }
+</style>

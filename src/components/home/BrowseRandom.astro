@@ -1,0 +1,29 @@
+---
+import "../../global.js";
+import GiftIcon from "../../icons/Gift.astro";
+import BrowseSectionLayout from "../../layouts/HomeBrowseSectionLayout.astro";
+
+interface Props {
+    extensions: {
+        name: string;
+        description: string;
+        author: string;
+        shellSupport: string[];
+    }[];
+}
+
+const { extensions } = Astro.props;
+---
+
+<BrowseSectionLayout extensions={extensions} url="/search?sort=created">
+    <Fragment slot="heading">
+        <GiftIcon size="16" aria-hidden="true" class="icon" /><span>Random</span
+        >
+    </Fragment>
+</BrowseSectionLayout>
+
+<style>
+    .icon {
+        fill: #3353d1;
+    }
+</style>

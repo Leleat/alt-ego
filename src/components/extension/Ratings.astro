@@ -1,0 +1,178 @@
+---
+import StarIcon from "../../icons/Stars.astro";
+import EmptyStarIcon from "../../icons/Star.astro";
+---
+
+<div>
+    <section>
+        <h2>Recent Ratings</h2>
+        <header>
+            <span>4.5</span>
+            <StarIcon size="24" aria-hidden="true" />
+            <span>(233 Reviews)</span>
+        </header>
+        <div class="individual-star-rating">
+            <span>
+                <StarIcon size="14" aria-hidden="true" />
+                <StarIcon size="14" aria-hidden="true" />
+                <StarIcon size="14" aria-hidden="true" />
+                <StarIcon size="14" aria-hidden="true" />
+                <StarIcon size="14" aria-hidden="true" />
+            </span>
+            <span></span>
+        </div>
+        <div class="individual-star-rating">
+            <span>
+                <StarIcon size="14" aria-hidden="true" />
+                <StarIcon size="14" aria-hidden="true" />
+                <StarIcon size="14" aria-hidden="true" />
+                <StarIcon size="14" aria-hidden="true" />
+                <EmptyStarIcon size="14" aria-hidden="true" />
+            </span>
+            <span></span>
+        </div>
+        <div class="individual-star-rating">
+            <span>
+                <StarIcon size="14" aria-hidden="true" />
+                <StarIcon size="14" aria-hidden="true" />
+                <StarIcon size="14" aria-hidden="true" />
+                <EmptyStarIcon size="14" aria-hidden="true" />
+                <EmptyStarIcon size="14" aria-hidden="true" />
+            </span>
+            <span></span>
+        </div>
+        <div class="individual-star-rating">
+            <span>
+                <StarIcon size="14" aria-hidden="true" />
+                <StarIcon size="14" aria-hidden="true" />
+                <EmptyStarIcon size="14" aria-hidden="true" />
+                <EmptyStarIcon size="14" aria-hidden="true" />
+                <EmptyStarIcon size="14" aria-hidden="true" />
+            </span>
+            <span></span>
+        </div>
+        <div class="individual-star-rating">
+            <span>
+                <StarIcon size="14" aria-hidden="true" />
+                <EmptyStarIcon size="14" aria-hidden="true" />
+                <EmptyStarIcon size="14" aria-hidden="true" />
+                <EmptyStarIcon size="14" aria-hidden="true" />
+                <EmptyStarIcon size="14" aria-hidden="true" />
+            </span>
+            <span></span>
+        </div>
+    </section>
+    <section>
+        <h2>Overall Ratings</h2>
+        <header>
+            <span>4.5</span>
+            <StarIcon size="24" aria-hidden="true" />
+            <span>(233 Reviews)</span>
+        </header>
+        <div class="individual-star-rating">
+            <span>
+                <StarIcon size="14" aria-hidden="true" />
+                <StarIcon size="14" aria-hidden="true" />
+                <StarIcon size="14" aria-hidden="true" />
+                <StarIcon size="14" aria-hidden="true" />
+                <StarIcon size="14" aria-hidden="true" />
+            </span>
+            <span></span>
+        </div>
+        <div class="individual-star-rating">
+            <span>
+                <StarIcon size="14" aria-hidden="true" />
+                <StarIcon size="14" aria-hidden="true" />
+                <StarIcon size="14" aria-hidden="true" />
+                <StarIcon size="14" aria-hidden="true" />
+                <EmptyStarIcon size="14" aria-hidden="true" />
+            </span>
+            <span></span>
+        </div>
+        <div class="individual-star-rating">
+            <span>
+                <StarIcon size="14" aria-hidden="true" />
+                <StarIcon size="14" aria-hidden="true" />
+                <StarIcon size="14" aria-hidden="true" />
+                <EmptyStarIcon size="14" aria-hidden="true" />
+                <EmptyStarIcon size="14" aria-hidden="true" />
+            </span>
+            <span></span>
+        </div>
+        <div class="individual-star-rating">
+            <span>
+                <StarIcon size="14" aria-hidden="true" />
+                <StarIcon size="14" aria-hidden="true" />
+                <EmptyStarIcon size="14" aria-hidden="true" />
+                <EmptyStarIcon size="14" aria-hidden="true" />
+                <EmptyStarIcon size="14" aria-hidden="true" />
+            </span>
+            <span></span>
+        </div>
+        <div class="individual-star-rating">
+            <span>
+                <StarIcon size="14" aria-hidden="true" />
+                <EmptyStarIcon size="14" aria-hidden="true" />
+                <EmptyStarIcon size="14" aria-hidden="true" />
+                <EmptyStarIcon size="14" aria-hidden="true" />
+                <EmptyStarIcon size="14" aria-hidden="true" />
+            </span>
+            <span></span>
+        </div>
+    </section>
+</div>
+
+<style>
+    div {
+        display: flex;
+        gap: 2rem;
+    }
+
+    h2 {
+        font-size: 1rem;
+    }
+
+    header {
+        font-size: 2rem;
+        margin-block: 1rem;
+        font-weight: 600;
+        display: flex;
+        align-items: center;
+
+        :nth-child(2) {
+            margin-inline-start: 0.5rem;
+            margin-inline-end: 1rem;
+        }
+
+        :last-child {
+            font-size: 1.25rem;
+            font-weight: normal;
+            color: var(--text-color-dim);
+        }
+    }
+
+    section {
+        flex: 1 0 0;
+    }
+
+    svg {
+        fill: #fda002;
+    }
+
+    .individual-star-rating {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        margin-block-start: 0.5rem;
+        user-select: none;
+        -webkit-user-select: none;
+        height: 1rem;
+
+        > :nth-child(2) {
+            background-color: #ddd;
+            border-radius: 0.25rem;
+            flex: 1 0 0;
+            height: 100%;
+        }
+    }
+</style>

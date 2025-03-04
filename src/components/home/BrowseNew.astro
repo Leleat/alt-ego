@@ -1,0 +1,30 @@
+---
+import "../../global.js";
+import LightningIcon from "../../icons/Lightning.astro";
+import BrowseSectionLayout from "../../layouts/HomeBrowseSectionLayout.astro";
+
+interface Props {
+    extensions: {
+        name: string;
+        description: string;
+        author: string;
+        shellSupport: string[];
+    }[];
+}
+
+const { extensions } = Astro.props;
+---
+
+<BrowseSectionLayout extensions={extensions} url="/search?sort=created">
+    <Fragment slot="heading">
+        <LightningIcon size="16" aria-hidden="true" class="icon" /><span
+            >New Uploads</span
+        >
+    </Fragment>
+</BrowseSectionLayout>
+
+<style>
+    .icon {
+        fill: #fda002;
+    }
+</style>

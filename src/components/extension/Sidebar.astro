@@ -1,0 +1,192 @@
+---
+import "../../global.js";
+import CalendarIcon from "../../icons/Calendar.astro";
+import DownloadIcon from "../../icons/CloudDownload.astro";
+import FileIcon from "../../icons/FileCode.astro";
+
+const { class: className, ...rest } = Astro.props;
+---
+
+<div class={`sidebar ${className}`} {...rest}>
+    <section class="stat-section">
+        <h2>Statistics</h2>
+        <ul>
+            <li><CalendarIcon /><span>2 days ago</span></li>
+            <li><DownloadIcon /><span>1.000.000 Downloads</span></li>
+            <li><FileIcon /><span>1.1 MB</span></li>
+        </ul>
+    </section>
+
+    <section>
+        <h2>Links</h2>
+        <ul>
+            <li><a href="">Visit Homepage</a></li>
+            <li><a href="">Report a Bug</a></li>
+            <li><a href="">Support with Donation</a></li>
+        </ul>
+    </section>
+
+    <section>
+        <h2>GNOME Shell Support</h2>
+        <div class="supported-versions">
+            {
+                ["42", "43", "44"].map((version) => (
+                    <a href="" class="version-pill">
+                        {version}
+                    </a>
+                ))
+            }
+        </div>
+    </section>
+
+    <section>
+        <h2>Languages</h2>
+        <ul class="language-support">
+            <li>en</li>
+            <li>de</li>
+            <li>es</li>
+        </ul>
+    </section>
+
+    <section class="other-extensions-section">
+        <h2>Other Extensions by <a href="">Author</a></h2>
+        <a href="/extension">
+            <article>
+                <p>Other title</p>
+                <p>
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                    Possimus, culpa ab dolores dolore asperiores similique
+                    maiores voluptas amet earum? Laudantium quos sed reiciendis
+                    ab tempora ullam dolor error dolorum ad?
+                </p>
+            </article>
+        </a>
+        <a href="/extension">
+            <article>
+                <p>Other title</p>
+                <p>
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                    Possimus, culpa ab dolores dolore asperiores similique
+                    maiores voluptas amet earum? Laudantium quos sed reiciendis
+                    ab tempora ullam dolor error dolorum ad?
+                </p>
+            </article>
+        </a>
+    </section>
+</div>
+
+<style>
+    .sidebar {
+        display: flex;
+        flex-direction: column;
+        gap: 3rem;
+    }
+
+    h2 {
+        font-size: 1rem;
+        margin-block: 1rem;
+
+        &:first-child {
+            margin-block-start: 0;
+        }
+    }
+
+    ul > li {
+        list-style-type: none;
+        margin-inline-start: 0;
+        margin-block-start: 0.25rem;
+    }
+
+    .stat-section li {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+    }
+
+    .supported-versions {
+        display: flex;
+        gap: 0.5rem;
+        font-size: smaller;
+        font-weight: 600;
+    }
+
+    .version-pill {
+        color: var(--text-color);
+        background-color: #ddd;
+        padding-inline: 0.75rem;
+        padding-block: 0.25rem;
+        border-radius: calc(infinity * 1px);
+        text-decoration: none;
+    }
+
+    .language-support {
+        display: flex;
+        flex-direction: column;
+        gap: 0.25rem;
+
+        > li {
+            background-color: #ddd;
+            border-radius: 0.25rem;
+            padding: 0.1rem 0.5rem;
+
+            &:nth-child(1) {
+                width: 100%;
+                background: var(--primary-color);
+            }
+
+            &:nth-child(2) {
+                width: 50%;
+            }
+
+            &:nth-child(3) {
+                width: 50%;
+            }
+        }
+    }
+
+    .other-extensions-section {
+        a:has(article) {
+            display: block;
+            text-decoration: none;
+            margin-block-start: 1rem;
+            color: inherit;
+            border-radius: 1rem;
+            border: 1px solid rgba(0, 0, 0, 0.15);
+            box-shadow:
+                0 0 5px rgba(0, 0, 0, 0.05),
+                0 1px 2px rgba(0, 0, 0, 0.1);
+            padding: 1rem;
+            background-color: white;
+
+            &:hover {
+                border-color: var(--primary-color);
+                box-shadow: 0 0 10px
+                    oklch(from var(--primary-color) l c h / 0.3);
+            }
+        }
+
+        p:first-child {
+            display: -webkit-box;
+            -webkit-line-clamp: 1;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+
+            font-weight: 600;
+        }
+
+        p:last-child {
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+    }
+
+    @media (min-width: 60rem) {
+        .sidebar {
+            border-inline-start: 1px solid #ddd;
+            height: fit-content;
+            padding-inline-start: 2rem;
+        }
+    }
+</style>

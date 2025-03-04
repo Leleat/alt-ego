@@ -1,0 +1,193 @@
+---
+import "../global.js";
+import ChevronDown from "../icons/ChevronDown.astro";
+
+const { border = true } = Astro.props;
+---
+
+<header>
+    <input type="checkbox" id="hamburger-checkbox" />
+    <label
+        class="hamburger-button"
+        for="hamburger-checkbox"
+        aria-label="Main Menu"
+        role="button"
+        aria-expanded="false"
+        tabindex="0"
+    >
+        <div class="menu-icon">
+            <div class="hamburger-line"></div>
+            <div class="hamburger-line"></div>
+            <div class="hamburger-line"></div>
+        </div>
+    </label>
+    <nav>
+        <div class="left-box">
+            <a href="/">Logo</a>
+            <a href="/search">Browse</a>
+            <a href="/develop">Develop</a>
+        </div>
+        <slot />
+        <div class="right-box">
+            <button
+                type="button"
+                onclick="alert('This is not implemented since this is just an alternative frontend concept site. Dont use it for productive use cases!')"
+            >
+                Manage Extensions
+            </button>
+            <button
+                type="button"
+                onclick="alert('This is not implemented since this is just an alternative frontend concept site. Dont use it for productive use cases!')"
+            >
+                Login / Register<ChevronDown aria-hidden="true" size="12" />
+            </button>
+        </div>
+    </nav>
+</header>
+
+<style
+    define:vars={border ?
+        { borderColor: "#ddd" }
+    :   { borderColor: "transparent" }}
+>
+    header {
+        inline-size: 100%;
+        border-block-end: 1px solid var(--borderColor);
+    }
+
+    .hamburger-button {
+        color: var(--text-color-dim);
+        display: flex;
+        align-items: center;
+        justify-content: end;
+        cursor: pointer;
+        padding: 1.125rem;
+        gap: 0.75rem;
+        block-size: var(--navbar-height);
+        font-weight: 800;
+        user-select: none;
+        -webkit-user-select: none;
+
+        &:hover {
+            transform: translateY(-3px);
+        }
+
+        &:focus-visible {
+            outline: none;
+
+            & .menu-icon {
+                outline: 3px solid var(--primary-color);
+                outline-offset: 2px;
+            }
+        }
+    }
+
+    .menu-icon {
+        display: flex;
+        flex-direction: column;
+        cursor: pointer;
+        gap: 5px;
+        justify-content: center;
+
+        & .hamburger-line {
+            inline-size: 1.5rem;
+            block-size: 3px;
+            background-color: var(--text-color-dim);
+            border-radius: calc(infinity * 1px);
+        }
+    }
+
+    #hamburger-checkbox {
+        display: none;
+
+        &:checked ~ nav {
+            display: flex;
+            flex-direction: column;
+            align-items: end;
+        }
+    }
+
+    nav {
+        max-inline-size: var(--max-inline-size);
+        min-block-size: var(--navbar-height);
+        padding-inline: 1.125rem;
+        margin-inline: auto;
+        margin-block-end: 2rem;
+        display: none;
+    }
+
+    a,
+    button {
+        color: var(--text-color-dim);
+        font-size: smaller;
+        text-decoration: none;
+        padding: 0.5rem;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+
+        &:hover {
+            color: var(--primary-color-text);
+        }
+    }
+
+    button {
+        background-color: transparent;
+        border: none;
+        cursor: pointer;
+    }
+
+    .left-box,
+    .right-box {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        gap: 0 2rem;
+        inline-size: 19rem;
+    }
+
+    .left-box :first-child {
+        font-weight: 600;
+    }
+
+    @media (prefers-reduced-motion: no-preference) {
+        .hamburger-button {
+            transition: transform 0.2s ease-out;
+        }
+    }
+
+    @media (min-width: 60rem) {
+        .hamburger-button {
+            display: none;
+        }
+
+        #hamburger-checkbox {
+            display: none;
+
+            &:checked ~ nav {
+                flex-direction: row;
+            }
+        }
+
+        nav {
+            position: static;
+            max-inline-size: var(--max-inline-size);
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: space-between;
+            margin: 0 auto;
+
+            .left-box,
+            .right-box {
+                flex-direction: row;
+                margin-block-end: 0;
+            }
+
+            .right-box {
+                justify-content: flex-end;
+                margin-inline-start: auto;
+            }
+        }
+    }
+</style>

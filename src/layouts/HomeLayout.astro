@@ -1,0 +1,30 @@
+---
+import "../global.js";
+import Footer from "../components/Footer.astro";
+import Navbar from "../components/Navbar.astro";
+---
+
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Home | extensions.gnome.org</title>
+    </head>
+    <body>
+        <Navbar border={false} />
+        <main>
+            <slot />
+        </main>
+        <Footer />
+    </body>
+</html>
+
+<style>
+    main {
+        inline-size: 100%;
+        min-block-size: calc(
+            100vh - var(--navbar-height) - var(--footer-height)
+        );
+    }
+</style>

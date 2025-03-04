@@ -1,0 +1,64 @@
+---
+import "../global.js";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import GeneralInfo from "../components/extension/GeneralInfo.astro";
+import ImageCarousel from "../components/extension/ImageCarousel.astro";
+import Sidebar from "../components/extension/Sidebar.astro";
+import Ratings from "../components/extension/Ratings.astro";
+import Comments from "../components/extension/Comments.astro";
+
+const extension = {
+    name: "Lorem Ipsum",
+    description:
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla nec purus feugiat, vestibulum mi nec, ultricies nunc. Nulla facilisi. Nullam nec nunc nec nunc.",
+    author: "caesar",
+    date: "2025-01-01",
+    rating: "4.5",
+    ratingCount: "1.1k",
+    downloads: "1.1 mio",
+    shellSupport: ["40", "41", "42"],
+};
+---
+
+<BaseLayout title="Extension | extensions.gnome.org">
+    <GeneralInfo extension={extension} />
+    <ImageCarousel />
+    <div class="details-box">
+        <div class="main-box">
+            <Ratings />
+            <Comments />
+        </div>
+        <Sidebar class="sidebar-box" />
+    </div>
+</BaseLayout>
+
+<style>
+    .details-box {
+        display: flex;
+        flex-direction: column;
+        max-inline-size: var(--max-inline-size);
+        margin-inline: auto;
+        padding: var(--vpadding) var(--hpadding);
+        margin-block-start: 2rem;
+        margin-block-end: 4rem;
+        gap: 3rem;
+    }
+
+    .main-box {
+        flex: 1 0 0;
+        display: flex;
+        flex-direction: column;
+        gap: 3rem;
+    }
+
+    @media (min-width: 60rem) {
+        .details-box {
+            flex-direction: row;
+        }
+
+        .sidebar-box {
+            inline-size: 30%;
+            max-inline-size: 20rem;
+        }
+    }
+</style>

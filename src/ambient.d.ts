@@ -1,0 +1,15 @@
+type Extension = {
+    uuid: string,
+    name: string,
+    creator: string,
+    creator_url: string,
+    pk: string,
+    description: string,
+    link: string,
+    icon: string,
+    screenshot: string,
+    shell_version_map: string,
+    downloads: string,
+    url: string,
+    donation_urls: string,
+}

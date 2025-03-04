@@ -1,0 +1,168 @@
+---
+import "../../global.js";
+import Card from "./SearchCard.astro";
+import Sidebar from "./SearchResultsSidebar.astro";
+import ChevronDownIcon from "../../icons/ChevronDown.astro";
+
+const extensions = [
+    {
+        name: "Lorem Ipsum",
+        description:
+            "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla nec purus feugiat, vestibulum mi nec, ultricies nunc. Nulla facilisi. Nullam nec nunc nec nunc.",
+        author: "John Doe",
+        date: "2021-09-01",
+        downloads: "100k",
+        rating: "4.5",
+        shellSupport: ["3.38", "40", "41"],
+    },
+    {
+        name: "Dolor Sit Amet",
+        description:
+            "Dolor sit amet, consectetur adipiscing elit. Nulla nec purus feugiat, vestibulum mi nec, ultricies nunc. Nulla facilisi. Nullam nec nunc nec nunc.",
+        author: "Jane Doe",
+        date: "2021-09-01",
+        downloads: "100k",
+        rating: "4.5",
+        shellSupport: ["3.38", "40", "41"],
+    },
+    {
+        name: "Consectetur Adipiscing",
+        description:
+            "Consectetur adipiscing elit. Nulla nec purus feugiat, vestibulum mi nec, ultricies nunc. Nulla facilisi. Nullam nec nunc nec nunc.",
+        author: "John Doe",
+        date: "2021-09-01",
+        downloads: "100k",
+        rating: "4.5",
+        shellSupport: ["3.38", "40", "41"],
+    },
+    {
+        name: "Vestibulum Mi Nec",
+        description:
+            "Vestibulum mi nec, ultricies nunc. Nulla facilisi. Nullam nec nunc nec nunc.",
+        author: "Jane Doe",
+        date: "2021-09-01",
+        downloads: "100k",
+        rating: "4.5",
+        shellSupport: ["3.38", "40", "41"],
+    },
+    {
+        name: "Lorem Ipsum",
+        description:
+            "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla nec purus feugiat, vestibulum mi nec, ultricies nunc. Nulla facilisi. Nullam nec nunc nec nunc.",
+        author: "John Doe",
+        date: "2021-09-01",
+        downloads: "100k",
+        rating: "4.5",
+        shellSupport: ["3.38", "40", "41"],
+    },
+    {
+        name: "Dolor Sit Amet",
+        description:
+            "Dolor sit amet, consectetur adipiscing elit. Nulla nec purus feugiat, vestibulum mi nec, ultricies nunc. Nulla facilisi. Nullam nec nunc nec nunc.",
+        author: "Jane Doe",
+        date: "2021-09-01",
+        downloads: "100k",
+        rating: "4.5",
+        shellSupport: ["3.38", "40", "41"],
+    },
+];
+---
+
+<section>
+    <Sidebar />
+    <span>
+        <span>
+            {extensions.map((e) => <Card extension={e} />)}
+        </span>
+        <div class="pagination">
+            <button type="button" aria-label="Previous page">
+                <ChevronDownIcon aria-hidden="true" />
+            </button>
+            <input type="text" value="1" aria-label="Current Page" />
+            <span>/</span>
+            <span>1</span>
+            <button type="button" aria-label="Next page">
+                <ChevronDownIcon aria-hidden="true" />
+            </button>
+        </div>
+    </span>
+</section>
+
+<style>
+    section {
+        max-inline-size: var(--max-inline-size);
+        display: flex;
+        flex-direction: column;
+        align-items: start;
+        margin: 0 auto;
+        padding-block: 3.5rem;
+        padding-inline: var(--hpadding);
+        gap: 2rem;
+    }
+
+    span {
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+        justify-content: center;
+    }
+
+    input {
+        inline-size: 3rem;
+        padding: 0.5rem;
+        border: 1px solid #ddd;
+        border-radius: 0.5rem;
+        text-align: center;
+    }
+
+    .pagination {
+        display: flex;
+        justify-content: center;
+        align-self: center;
+        gap: 1rem;
+        margin-block: 4rem;
+    }
+
+    .pagination button {
+        background-color: transparent;
+        border: none;
+        padding: 0.75rem;
+        border-radius: calc(infinity * 1px);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+
+        &:first-child {
+            transform: rotate(90deg);
+            margin-inline-end: 2rem;
+        }
+
+        &:last-child {
+            transform: rotate(270deg);
+            margin-inline-start: 2rem;
+        }
+
+        &:hover {
+            background-color: #eee;
+        }
+
+        &:first-child:hover svg,
+        &:last-child:hover svg {
+            transform: translateY(0.25rem);
+        }
+    }
+
+    @media (min-width: 60rem) {
+        section {
+            flex-direction: row;
+            gap: 5rem;
+        }
+    }
+
+    @media (prefers-reduced-motion: no-preference) {
+        .pagination button svg {
+            transition: transform 0.2s ease-out;
+        }
+    }
+</style>

@@ -1,0 +1,98 @@
+---
+import "../../global.js";
+
+interface Props {
+    extension: {
+        name: string;
+        description: string;
+        author: string;
+        shellSupport: string[];
+    };
+}
+
+const { extension } = Astro.props;
+---
+
+<a href="/extension">
+    <article>
+        <header>
+            <h4>{extension.name}</h4>
+            <span class="author">
+                by {extension.author}
+            </span>
+        </header>
+        <p>{extension.description}</p>
+        <div class="support-list">
+            <span>Supports GNOME</span>
+            <span class="supported-versions">
+                {
+                    extension.shellSupport.map((version) => (
+                        <span class="version-pill">{version}</span>
+                    ))
+                }
+            </span>
+        </div>
+    </article>
+</a>
+
+<style>
+    a {
+        text-decoration: none;
+        color: inherit;
+        background-color: white;
+        border: 1px solid rgba(0, 0, 0, 0.15);
+        border-radius: 1rem;
+        box-shadow:
+            0 0 5px rgba(0, 0, 0, 0.05),
+            0 1px 2px rgba(0, 0, 0, 0.1);
+
+        &:hover {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 10px oklch(from var(--primary-color) l c h / 0.3);
+        }
+    }
+
+    article {
+        padding: 1rem;
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+
+    article h4 {
+        font-size: 1rem;
+        display: inline;
+    }
+
+    article .author {
+        color: var(--text-color-dim);
+        font-size: smaller;
+    }
+
+    article header + p {
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        font-size: smaller;
+    }
+
+    article .support-list {
+        display: flex;
+        justify-content: space-between;
+        font-size: small;
+        color: var(--text-color-dim);
+    }
+
+    article .support-list .supported-versions {
+        display: inline-flex;
+        gap: 0.25rem;
+    }
+
+    article .support-list .version-pill {
+        color: var(--text-color);
+        background-color: #ccc;
+        padding-inline: 0.5rem;
+        border-radius: calc(infinity * 1px);
+    }
+</style>

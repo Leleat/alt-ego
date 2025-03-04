@@ -1,0 +1,170 @@
+---
+import "../../global.js";
+import SidebarIcon from "../../icons/LayoutSidebar.astro";
+import ChevronDownIcon from "../../icons/ChevronDown.astro";
+import SidebarSection from "./SidebarSection.astro";
+---
+
+<div class="mobile-box">
+    <button aria-label="Toggle Sidebar" popovertarget="mobile-sidebar">
+        <SidebarIcon size="24" aria-hidden="true" />
+    </button>
+    <aside id="mobile-sidebar" popover>
+        <SidebarSection
+            title="Getting Started"
+            items={[{ name: "Introduction" }, { name: "Quick Start" }]}
+        />
+        <SidebarSection
+            title="Development"
+            items={[
+                { name: "Core Concepts" },
+                { name: "Writing an Extension" },
+                { name: "Testing and Debugging" },
+                { name: "Distribution" },
+            ]}
+        />
+        <SidebarSection
+            title="Editor Integration and Tooling"
+            items={[{ name: "TypeScript" }, { name: "JavaScript" }]}
+        />
+        <SidebarSection
+            title="Topics"
+            items={[
+                { name: "Migrate" },
+                { name: "Preferences" },
+                { name: "Keyboard Shortcuts" },
+                { name: "Translation" },
+                { name: "Accessibility" },
+                { name: "Shell Dialogs" },
+                { name: "Notifications" },
+                { name: "Quick Settings" },
+                { name: "Popup Menu" },
+                { name: "Search Provider" },
+            ]}
+        />
+    </aside>
+</div>
+<aside id="desktop-sidebar">
+    <button class="version">
+        <span>Current Version</span>
+        <ChevronDownIcon size="14" aria-hidden="true" />
+    </button>
+    <SidebarSection
+        title="Getting Started"
+        items={[{ name: "Introduction" }, { name: "Quick Start" }]}
+    />
+    <SidebarSection
+        title="Development"
+        items={[
+            { name: "Core Concepts" },
+            { name: "Writing an Extension" },
+            { name: "Testing and Debugging" },
+            { name: "Distribution" },
+        ]}
+    />
+    <SidebarSection
+        title="Editor Integration and Tooling"
+        items={[{ name: "TypeScript" }, { name: "JavaScript" }]}
+    />
+    <SidebarSection
+        title="Topics"
+        items={[
+            { name: "Migrate" },
+            { name: "Preferences" },
+            { name: "Keyboard Shortcuts" },
+            { name: "Translation" },
+            { name: "Accessibility" },
+            { name: "Shell Dialogs" },
+            { name: "Notifications" },
+            { name: "Quick Settings" },
+            { name: "Popup Menu" },
+            { name: "Search Provider" },
+        ]}
+    />
+</aside>
+
+<style>
+    button[popovertarget] {
+        position: absolute;
+        top: calc((var(--navbar-height) - 24px) / 2);
+        left: 1.125rem;
+        border: none;
+        background-color: transparent;
+
+        svg {
+            fill: var(--text-color-dim);
+        }
+    }
+
+    .version {
+        color: inherit;
+        font-weight: 600;
+        background-color: #ddd;
+        padding: 0.5rem 1rem;
+        border-radius: 0.5rem;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 0.5rem;
+    }
+
+    #mobile-sidebar {
+        flex-direction: column;
+        gap: 1.5rem;
+        background-color: white;
+        border: 1px solid #ddd;
+        border-radius: 1rem;
+        position: absolute;
+        top: calc(var(--navbar-height) + 1rem);
+        left: 1rem;
+        inline-size: calc(100% - 2rem);
+        max-block-size: 90vh;
+        box-shadow: 0 0 1rem rgba(0, 0, 0, 0.1);
+        padding-inline: 2rem;
+        padding-block: 1.5rem;
+
+        &:popover-open {
+            display: flex;
+        }
+    }
+
+    #desktop-sidebar {
+        display: none;
+    }
+
+    @media (min-width: 40rem) {
+        * {
+            --sidebar-itemspacing: 0.75rem;
+
+            margin: 0;
+            font-size: small;
+        }
+
+        label {
+            display: none;
+        }
+
+        .mobile-box {
+            display: none;
+        }
+
+        #desktop-sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+            border: none;
+            border-inline-end: 1px solid #ddd;
+            border-radius: 0;
+            padding: var(--vpadding) var(--hpadding);
+            inline-size: 15rem;
+            box-shadow: none;
+            height: fit-content;
+        }
+
+        h3 {
+            color: oklch(from var(--color-text) calc(l - 0.25) c h);
+            text-transform: uppercase;
+            margin-block-end: calc(var(--sidebar-itemspacing));
+        }
+    }
+</style>

@@ -1,0 +1,192 @@
+---
+import ChevronDownIcon from "../../icons/ChevronDown.astro";
+import StarIcon from "../../icons/Stars.astro";
+import EmptyStarIcon from "../../icons/Star.astro";
+---
+
+<div>
+    <h2>Reviews and Comments</h2>
+    <div>
+        <article>
+            <header>
+                <span>
+                    <StarIcon size="14" aria-hidden="true" />
+                    <StarIcon size="14" aria-hidden="true" />
+                    <StarIcon size="14" aria-hidden="true" />
+                    <StarIcon size="14" aria-hidden="true" />
+                    <EmptyStarIcon size="14" aria-hidden="true" />
+                </span>
+                J. Doe
+                <span>wrote a month ago</span>
+            </header>
+            <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit
+                inventore voluptates hic adipisci ipsa, dolore obcaecati
+                officia? Tempora accusantium, eum enim reprehenderit laborum
+                commodi excepturi architecto cupiditate nam, minus sint?
+            </p>
+        </article>
+        <article>
+            <header>
+                <span>
+                    <StarIcon size="14" aria-hidden="true" />
+                    <StarIcon size="14" aria-hidden="true" />
+                    <StarIcon size="14" aria-hidden="true" />
+                    <StarIcon size="14" aria-hidden="true" />
+                    <EmptyStarIcon size="14" aria-hidden="true" />
+                </span>
+                J. Doe
+                <span>wrote a month ago</span>
+            </header>
+            <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit
+                inventore voluptates hic adipisci ipsa, dolore obcaecati
+                officia? Tempora accusantium, eum enim reprehenderit laborum
+                commodi excepturi architecto cupiditate nam, minus sint?
+            </p>
+        </article>
+        <article>
+            <header>J. Doe<span>wrote a month ago</span></header>
+            <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit
+                inventore voluptates hic adipisci ipsa, dolore obcaecati
+                officia? Tempora accusantium, eum enim reprehenderit laborum
+                commodi excepturi architecto cupiditate nam, minus sint?
+            </p>
+        </article>
+        <article>
+            <header>J. Doe<span>wrote a month ago</span></header>
+            <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit
+                inventore voluptates hic adipisci ipsa, dolore obcaecati
+                officia? Tempora accusantium, eum enim reprehenderit laborum
+                commodi excepturi architecto cupiditate nam, minus sint?
+            </p>
+        </article>
+        <article>
+            <header>
+                <span>
+                    <StarIcon size="14" aria-hidden="true" />
+                    <StarIcon size="14" aria-hidden="true" />
+                    <StarIcon size="14" aria-hidden="true" />
+                    <EmptyStarIcon size="14" aria-hidden="true" />
+                    <EmptyStarIcon size="14" aria-hidden="true" />
+                </span>
+                J. Doe
+                <span>wrote a month ago</span>
+            </header>
+            <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit
+                inventore voluptates hic adipisci ipsa, dolore obcaecati
+                officia? Tempora accusantium, eum enim reprehenderit laborum
+                commodi excepturi architecto cupiditate nam, minus sint?
+            </p>
+        </article>
+    </div>
+    <div class="pagination">
+        <button type="button" aria-label="Previous page">
+            <ChevronDownIcon aria-hidden="true" />
+        </button>
+        <input type="text" value="1" aria-label="Current Page" />
+        <span>/</span>
+        <span>1</span>
+        <button type="button" aria-label="Next page">
+            <ChevronDownIcon aria-hidden="true" />
+        </button>
+    </div>
+</div>
+
+<style>
+    div:has(> article) {
+        border-radius: 1rem;
+    }
+
+    h2 {
+        font-size: 1rem;
+    }
+
+    article {
+        padding-block: 1.5rem;
+        border-block-end: 1px solid #ddd;
+
+        &:last-child {
+            border-block-end: none;
+        }
+    }
+
+    article header {
+        font-size: 1rem;
+        font-weight: 600;
+        margin-block: 0;
+
+        svg {
+            fill: #fda002;
+        }
+
+        span:first-child {
+            margin-inline-end: 0.5rem;
+        }
+
+        span:last-child {
+            font-weight: normal;
+            margin-inline-start: 0.5rem;
+            color: var(--text-color-dim);
+        }
+    }
+
+    article p {
+        margin-block-start: 1rem;
+    }
+
+    .pagination {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 1rem;
+        margin-block: 4rem;
+    }
+
+    .pagination input {
+        inline-size: 3rem;
+        padding: 0.5rem;
+        border: 1px solid #ddd;
+        border-radius: 0.5rem;
+        text-align: center;
+    }
+
+    .pagination button {
+        background-color: transparent;
+        border: none;
+        padding: 0.75rem;
+        border-radius: calc(infinity * 1px);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+
+        &:first-child {
+            transform: rotate(90deg);
+            margin-inline-end: 2rem;
+        }
+
+        &:last-child {
+            transform: rotate(270deg);
+            margin-inline-start: 2rem;
+        }
+
+        &:hover {
+            background-color: #eee;
+        }
+
+        &:first-child:hover svg,
+        &:last-child:hover svg {
+            transform: translateY(0.25rem);
+        }
+    }
+
+    @media (prefers-reduced-motion: no-preference) {
+        .pagination button svg {
+            transition: transform 0.2s ease-out;
+        }
+    }
+</style>

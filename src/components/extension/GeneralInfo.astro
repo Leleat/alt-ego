@@ -1,0 +1,124 @@
+---
+import "../../global.js";
+import StarsIcon from "../../icons/Stars.astro";
+import ChatHeartIcon from "../../icons/ChatHeart.astro";
+import HomepageIcon from "../../icons/HouseDoor.astro";
+
+const { extension } = Astro.props;
+---
+
+<div class="info">
+    <div class="icon"><div></div></div>
+    <div class="body-box">
+        <span class="body">
+            <header>
+                <h4>{extension.name}</h4>
+                <span>by <a href="/">{extension.author}</a></span>
+            </header>
+            <p class="description">{extension.description}</p>
+        </span>
+        <span class="action-buttons">
+            <button
+                type="button"
+                onclick="alert('Not implemented since this is just concept')"
+                >Activate</button
+            >
+            <button
+                type="button"
+                onclick="alert('Not implemented since this is just concept')"
+                >Preferences</button
+            >
+            <button
+                type="button"
+                onclick="alert('Not implemented since this is just concept')"
+                >Uninstall</button
+            >
+        </span>
+    </div>
+</div>
+
+<style>
+    .info {
+        display: flex;
+        align-items: center;
+        gap: 3rem;
+        padding-block: 5rem;
+        padding-inline: var(--hpadding);
+        max-inline-size: var(--max-inline-size);
+        margin: 0 auto;
+    }
+
+    .info .body-box {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        flex: 1 0 0;
+    }
+
+    .info .icon {
+        inline-size: 6rem;
+        block-size: 6rem;
+        background-color: var(--primary-color-light);
+        border-radius: 1rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        div {
+            inline-size: 3.5rem;
+            block-size: 3.5rem;
+            background-color: var(--primary-color);
+            border-radius: 0.5rem;
+        }
+    }
+
+    .info .body {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        gap: 0.75rem;
+        flex: 1 0 0;
+    }
+
+    .info h4 {
+        margin-block: 0;
+    }
+
+    .info .author {
+        color: var(--text-color-dim);
+        font-size: smaller;
+    }
+
+    .info .description {
+        display: -webkit-box;
+        -webkit-line-clamp: 3;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+    }
+
+    .info .action-buttons {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+
+        button {
+            background-color: #ddd;
+            border: none;
+            border-radius: 0.5rem;
+            padding: 0.5rem 1.25rem;
+            font-size: smaller;
+            font-weight: 600;
+        }
+
+        button:last-child {
+            background-color: #d73c24;
+            color: white;
+        }
+    }
+
+    @media (min-width: 60rem) {
+        .info .body-box {
+            flex-direction: row;
+        }
+    }
+</style>

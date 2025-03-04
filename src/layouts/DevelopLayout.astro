@@ -1,0 +1,144 @@
+---
+import "../global.js";
+import Sidebar from "../components/develop/Sidebar.astro";
+import ToC from "../components/develop/ToC.astro";
+import BaseLayout from "./BaseLayout.astro";
+
+const { frontmatter, headings } = Astro.props;
+---
+
+<BaseLayout title="Develop | extensions.gnome.org">
+    <div class="content">
+        <Sidebar />
+        <div class="main">
+            <h1 id={frontmatter.url.split("/").at(-1)}>
+                {frontmatter.title}
+            </h1>
+            <slot />
+            <hr />
+            <div class="post-buttons">
+                <a class="prev-post-button" href="">
+                    <div class="prev-label">Previous</div>
+                    <div>Previous Post Title</div>
+                </a>
+
+                <a class="next-post-button" href="">
+                    <div class="next-label">Next</div>
+                    <div>Next Post Title</div>
+                </a>
+            </div>
+        </div>
+        <ToC headings={headings} />
+    </div>
+</BaseLayout>
+
+<style>
+    .content {
+        display: flex;
+        justify-items: center;
+        min-block-size: calc(
+            100vh - var(--navbar-height) - var(--footer-height)
+        );
+        max-inline-size: var(--max-inline-size);
+        margin: 0 auto;
+    }
+
+    .main {
+        display: flex;
+        flex-direction: column;
+        block-size: 100%;
+        margin: 0 auto;
+        padding: var(--vpadding) var(--hpadding);
+        inline-size: 100%;
+        max-inline-size: 85ch;
+        overflow-x: auto;
+
+        h1,
+        h2 {
+            margin-block-start: 1.5rem;
+            margin-block-end: 1rem;
+        }
+
+        p {
+            margin-block: 1rem;
+        }
+
+        ul > li,
+        ol > li {
+            margin-inline-start: 2rem;
+        }
+    }
+
+    hr {
+        border: none;
+        border-block: 1px solid #eee;
+        margin-block: 2rem;
+    }
+
+    .post-buttons {
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+        margin-block-end: 4rem;
+    }
+
+    .prev-post-button,
+    .next-post-button {
+        display: flex;
+        flex-direction: column;
+        gap: 0.375rem;
+        font-weight: 600;
+        background-color: #eee;
+        border: 1px solid #eee;
+        padding: 1.5rem;
+        border-radius: 0.75rem;
+        color: var(--text-color);
+        text-decoration: none;
+        cursor: default;
+
+        &:hover {
+            border: 1px solid #eee;
+            background-color: #f3f3f3;
+        }
+
+        & :nth-child(2) {
+            font-weight: normal;
+            display: -webkit-box;
+            -webkit-line-clamp: 1;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+    }
+
+    .next-post-button {
+        align-items: end;
+        text-align: right;
+    }
+
+    :has(> .next-icon, > .prev-icon) {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
+
+    .prev-icon {
+        transform: rotate(180deg);
+    }
+
+    @media (min-width: 80rem) {
+        .post-buttons {
+            flex-direction: row;
+        }
+
+        .prev-post-button,
+        .next-post-button {
+            flex: 1 0 0;
+            max-inline-size: 50%;
+        }
+
+        .next-post-button {
+            margin-inline-start: auto;
+        }
+    }
+</style>

@@ -1,0 +1,40 @@
+---
+const { title, items } = Astro.props;
+---
+
+<section>
+    <h3>{title}</h3>
+    <div role="list">
+        {
+            items.map(({ name }: { name: string }) => (
+                <a href="" role="listitem">
+                    {name}
+                </a>
+            ))
+        }
+    </div>
+</section>
+
+<style>
+    h3 {
+        font-size: 0.9rem;
+        margin-block: 1rem;
+    }
+
+    div {
+        display: flex;
+        flex-direction: column;
+        margin-inline-start: 1rem;
+        gap: 0.75rem;
+    }
+
+    a {
+        font-size: 0.9rem;
+        text-decoration: none;
+        color: var(--text-color-dim);
+
+        &:hover {
+            color: var(--primary-color-text);
+        }
+    }
+</style>

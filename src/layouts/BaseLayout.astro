@@ -1,0 +1,134 @@
+---
+import "../global.js";
+import Footer from "../components/Footer.astro";
+import Navbar from "../components/Navbar.astro";
+import SearchIcon from "../icons/Search.astro";
+
+const { title } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>{title}</title>
+    </head>
+    <body>
+        <Navbar>
+            <div class="searchbar">
+                <input
+                    autofocus
+                    id="searchfield"
+                    type="text"
+                    placeholder=""
+                    aria-label="Search"
+                />
+                <div class="overlay">
+                    <div class="left-container">
+                        <SearchIcon aria-hidden="true" size="16" />
+                        <label class="placeholder" aria-hidden="true">
+                            Search...
+                        </label>
+                    </div>
+                    <div class="shortcut">Ctrl + K</div>
+                </div>
+            </div>
+        </Navbar>
+        <main>
+            <slot />
+        </main>
+        <Footer />
+    </body>
+</html>
+
+<style>
+    main {
+        inline-size: 100%;
+        min-block-size: calc(
+            100vh - var(--navbar-height) - var(--footer-height)
+        );
+    }
+
+    .searchbar {
+        display: none;
+        inline-size: 20rem;
+        border-radius: calc(infinity * 1px);
+        background-color: #eee;
+        position: relative;
+        font-size: smaller;
+        margin-inline-start: auto;
+
+        &:focus-within {
+            border-color: var(--primary-color);
+            outline: 2px solid var(--primary-color);
+        }
+
+        .overlay {
+            position: absolute;
+            color: var(--text-color-dim);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            top: 0;
+            left: 1rem;
+            right: 1rem;
+            block-size: 100%;
+            pointer-events: none;
+        }
+
+        .overlay > .left-container {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+
+            svg {
+                fill: var(--text-color-dim);
+            }
+        }
+
+        .overlay .shortcut {
+            font-size: small;
+        }
+
+        input {
+            background-color: transparent;
+            padding-inline-start: 2.75rem;
+            padding-inline-end: 1rem;
+            padding-block: 0.5rem;
+            inline-size: 100%;
+
+            &:focus {
+                outline: none;
+            }
+        }
+
+        input:focus + .overlay > .shortcut,
+        input:not(:placeholder-shown) + .overlay .placeholder {
+            display: none;
+        }
+    }
+
+    @media (min-width: 40rem) {
+        .searchbar {
+            display: block;
+        }
+    }
+</style>
+
+<script>
+    document.addEventListener("keydown", (e) => {
+        if (e.ctrlKey && e.key === "k") {
+            document.getElementById("searchfield")!.focus();
+            e.preventDefault();
+        }
+    });
+
+    const input = document.querySelector("#searchfield") as HTMLInputElement;
+
+    input.addEventListener("keydown", (e) => {
+        if (e.key === "Enter") {
+            window.location.href = `/search?q=${input.value}`;
+        }
+    });
+</script>

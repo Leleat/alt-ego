@@ -1,0 +1,129 @@
+---
+import BrowseNew from "./BrowseNew.astro";
+import BrowsePopular from "./BrowsePopular.astro";
+import BrowseRandom from "./BrowseRandom.astro";
+import ArrowRight from "../../icons/ArrowRight.astro";
+
+const extensions = [
+    {
+        name: "Lorem Ipsum",
+        description:
+            "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla nec purus feugiat, vestibulum mi nec, ultricies nunc. Nulla facilisi. Nullam nec nunc nec nunc.",
+        author: "John Doe",
+        shellSupport: ["3.38", "40", "41"],
+    },
+    {
+        name: "Dolor Sit Amet",
+        description:
+            "Dolor sit amet, consectetur adipiscing elit. Nulla nec purus feugiat, vestibulum mi nec, ultricies nunc. Nulla facilisi. Nullam nec nunc nec nunc.",
+        author: "Jane Doe",
+        shellSupport: ["3.38", "40", "41"],
+    },
+    {
+        name: "Consectetur Adipiscing",
+        description:
+            "Consectetur adipiscing elit. Nulla nec purus feugiat, vestibulum mi nec, ultricies nunc. Nulla facilisi. Nullam nec nunc nec nunc.",
+        author: "John Doe",
+        shellSupport: ["3.38", "40", "41"],
+    },
+    {
+        name: "Vestibulum Mi Nec",
+        description:
+            "Vestibulum mi nec, ultricies nunc. Nulla facilisi. Nullam nec nunc nec nunc.",
+        author: "Jane Doe",
+        shellSupport: ["3.38", "40", "41"],
+    },
+    {
+        name: "Lorem Ipsum",
+        description:
+            "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla nec purus feugiat, vestibulum mi nec, ultricies nunc. Nulla facilisi. Nullam nec nunc nec nunc.",
+        author: "John Doe",
+        shellSupport: ["3.38", "40", "41"],
+    },
+    {
+        name: "Dolor Sit Amet",
+        description:
+            "Dolor sit amet, consectetur adipiscing elit. Nulla nec purus feugiat, vestibulum mi nec, ultricies nunc. Nulla facilisi. Nullam nec nunc nec nunc.",
+        author: "Jane Doe",
+        shellSupport: ["3.38", "40", "41"],
+    },
+];
+---
+
+<section>
+    <h2>Browse Extensions</h2>
+    <div>
+        <BrowseNew {extensions} />
+        <BrowsePopular {extensions} />
+        <BrowseRandom {extensions} />
+    </div>
+    <a href="/search"><span>Browse More</span> <ArrowRight /></a>
+</section>
+
+<style>
+    section {
+        max-inline-size: var(--max-inline-size);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin: 0 auto;
+        padding-block: 3.5rem;
+        padding-inline: 1rem;
+    }
+
+    h2 {
+        /* Put it above the puzzle bg */
+        z-index: 1;
+        text-shadow:
+            0 0 1rem white,
+            0 0 1rem white,
+            0 0 2rem white,
+            0 0 2rem white,
+            0 0 3rem white;
+
+        &::selection {
+            text-shadow: none;
+        }
+    }
+
+    div {
+        display: flex;
+        flex-direction: column;
+    }
+
+    a {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        text-decoration: none;
+        background-color: var(--primary-color);
+        color: var(--text-color-dark);
+        font-weight: 600;
+        font-size: 1rem;
+        padding: 0.5rem 2rem;
+        border-radius: calc(infinity * 1px);
+        margin-block: 4rem;
+
+        &:focus-visible {
+            box-shadow: 3px 4px 0 1px var(--primary-color-light);
+            outline: none;
+        }
+
+        &:hover > * {
+            transform: translateX(0.25rem);
+        }
+    }
+
+    @media (min-width: 80rem) {
+        div {
+            flex-direction: row;
+            gap: 2rem;
+        }
+    }
+
+    @media (prefers-reduced-motion: no-preference) {
+        a > * {
+            transition: transform 0.2s ease-out;
+        }
+    }
+</style>

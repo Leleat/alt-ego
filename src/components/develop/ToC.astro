@@ -1,0 +1,125 @@
+---
+import "../../global.js";
+1;
+interface Props {
+    headings: { depth: number; slug: string; text: string }[];
+}
+
+const { headings } = Astro.props;
+---
+
+<aside>
+    <h3>On This Page</h3>
+    <div class="content" role="list">
+        <div class="toc-item-indicator"></div>
+        {
+            headings.map(({ slug, text }) => (
+                <a class="toc-item" href={`#${slug}`} role="listitem">
+                    {text}
+                </a>
+            ))
+        }
+    </div>
+</aside>
+
+<style>
+    * {
+        --toc-hpadding: 2rem;
+        --toc-itemspacing: 1.125rem;
+
+        margin: 0;
+        font-size: small;
+    }
+
+    aside {
+        display: none;
+        flex-direction: column;
+        position: sticky;
+        top: 0;
+        block-size: fit-content;
+        inline-size: 14rem;
+        padding: var(--vpadding) var(--hpadding);
+    }
+
+    h3 {
+        text-transform: uppercase;
+        padding-inline-start: var(--toc-hpadding);
+        margin-block-end: var(--toc-itemspacing);
+    }
+
+    .content {
+        border-inline-start: 1px solid #ddd;
+        display: flex;
+        flex-direction: column;
+        gap: var(--toc-itemspacing);
+        padding-inline-start: var(--toc-hpadding);
+        position: relative;
+    }
+
+    .toc-item {
+        color: var(--text-color);
+        text-decoration: none;
+        position: relative;
+
+        &:hover {
+            color: var(--primary-color-text);
+
+            &::before {
+                content: "#";
+                position: absolute;
+                left: calc(-1 * var(--toc-hpadding) / 2);
+            }
+        }
+    }
+
+    .toc-item-indicator {
+        --size: 0.2rem;
+
+        position: absolute;
+        background-color: var(--primary-color);
+        border-radius: calc(infinity * 1px);
+        inline-size: var(--size);
+        top: 0;
+        opacity: 0;
+        left: calc(-1 * var(--size) / 2);
+    }
+
+    @media (min-width: 80rem) {
+        aside {
+            display: flex;
+        }
+    }
+</style>
+
+<script>
+    const tocItems = Array.from(document.querySelectorAll(".toc-item"));
+    const tocItemIndicator = document.querySelector(
+        ".toc-item-indicator",
+    ) as HTMLElement;
+
+    tocItemIndicator.style.opacity = "1";
+
+    const observer = new IntersectionObserver((entries) => {
+        const visibleHeadings = entries.filter((e) => e.isIntersecting);
+
+        if (visibleHeadings.length > 0) {
+            const tocItem = tocItems.find((item) =>
+                visibleHeadings.some(
+                    (h) => item.getAttribute("href") === `#${h.target.id}`,
+                ),
+            ) as HTMLElement;
+
+            const itemHeight = tocItem.offsetHeight;
+            const offsetTop = tocItem.offsetTop;
+
+            tocItemIndicator.style.transform = `translateY(${offsetTop}px)`;
+            tocItemIndicator.style.height = `${itemHeight}px`;
+        }
+    });
+
+    const headings = document.querySelectorAll(
+        "main h2, main h3, main h4, main h5, main h6",
+    );
+
+    headings.forEach((h) => observer.observe(h));
+</script>

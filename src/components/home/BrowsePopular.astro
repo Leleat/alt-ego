@@ -1,0 +1,30 @@
+---
+import "../../global.js";
+import HeartsIcon from "../../icons/Hearts.astro";
+import BrowseSectionLayout from "../../layouts/HomeBrowseSectionLayout.astro";
+
+interface Props {
+    extensions: {
+        name: string;
+        description: string;
+        author: string;
+        shellSupport: string[];
+    }[];
+}
+
+const { extensions } = Astro.props;
+---
+
+<BrowseSectionLayout extensions={extensions} url="/search?sort=popularity">
+    <Fragment slot="heading">
+        <HeartsIcon size="16" aria-hidden="true" class="icon" /><span
+            >Popular</span
+        >
+    </Fragment>
+</BrowseSectionLayout>
+
+<style>
+    .icon {
+        fill: #ff3d71;
+    }
+</style>
