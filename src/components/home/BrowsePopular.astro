@@ -15,7 +15,10 @@ interface Props {
 const { extensions } = Astro.props;
 ---
 
-<BrowseSectionLayout extensions={extensions} url="/search?sort=popularity">
+<BrowseSectionLayout
+    extensions={extensions}
+    url="/alt-ego/search?sort=popularity"
+>
     <Fragment slot="heading">
         <HeartsIcon size="16" aria-hidden="true" class="icon" /><span
             >Popular</span
