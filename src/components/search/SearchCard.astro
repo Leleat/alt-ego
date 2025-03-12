@@ -18,9 +18,9 @@ const { extension } = Astro.props;
 ---
 
 <article>
-    <a href="/extension" class="icon"><div></div></a>
+    <a href="/alt-ego/extension" class="icon"><div></div></a>
     <span class="body">
-        <a href="/extension">
+        <a href="/alt-ego/extension">
             <header>
                 <span class="headline">
                     <h4>{extension.name}</h4>
@@ -36,7 +36,9 @@ const { extension } = Astro.props;
             </header>
         </a>
         <p class="author">
-            by <a href="/extension">{extension.author}</a> • {extension.date}
+            by <a href="/alt-ego/extension">{extension.author}</a> • {
+                extension.date
+            }
         </p>
         <p class="description">{extension.description}</p>
         <div class="support-list">

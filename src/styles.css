@@ -29,12 +29,7 @@
     --text-color-dim: #767676;
 
     color: var(--text-color);
-    background-color: var(--primary-color);
-
-    > * {
-        /* Make overscroll background the primary color */
-        background-color: var(--background-color);
-    }
+    background-color: var(--background-color);
 
     & :focus-visible {
         outline: 3px solid var(--primary-color);

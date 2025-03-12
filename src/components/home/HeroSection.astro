@@ -10,14 +10,14 @@ const puzzleScale = 1.75;
 
 <section>
     <Puzzle class="puzzle" scale={puzzleScale} aria-hidden="true" />
-    <img src="/puzzle-piece.png" alt="" />
+    <img src="/alt-ego/puzzle-piece.png" alt="" />
     <h1>GNOME Extensions</h1>
     <p class="subtitle">
         Cutsomize your GNOME Desktop and make it work for you. Thanks to a
         community of Open Source developers.
     </p>
     <small class="faq-link">
-        <a href="/develop#what-are-gnome-shell-extensions">
+        <a href="/alt-ego/develop#what-are-gnome-shell-extensions">
             What are GNOME Extensions?
         </a>
     </small>
@@ -294,7 +294,7 @@ const puzzleScale = 1.75;
 
     input.addEventListener("keydown", (e) => {
         if (e.key === "Enter") {
-            window.location.href = `/search?q=${input.value}`;
+            window.location.href = `/alt-ego/search?q=${input.value}`;
         }
     });
 </script>
